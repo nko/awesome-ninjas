@@ -7,3 +7,6 @@
 [submodule "deps/connect"]
 	path = deps/connect
 	url = git://github.com/senchalabs/connect.git
+[submodule "deps/redis-node-client"]
+	path = deps/redis-node-client
+	url = git://github.com/fictorial/redis-node-client.git
