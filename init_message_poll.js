@@ -1,6 +1,6 @@
 var Twitter          = require('./lib/twitter' ),
     CommandProcessor = require('./lib/command_processor'),
-    CommandParser    = require('./lilb/parser')
+    CommandParser    = require('./lib/parser'),
 
     // twitter communication instance
     T                = new Twitter(),
@@ -26,8 +26,6 @@ function twitterCallback( data ) {
 
     // execute asynchronously
     setTimeout( CommandProcessor.process, 0, map );
-
-    console.log( map );
 }
 
 
@@ -41,11 +39,13 @@ T.on( 'directMessages', function ( data ) {
     twitterCallback( data );
 } );
 
+// call for the first time
+T.mentions().directMessages();
 
+// start polling
 timeout = setInterval( function () {
     // fetch messages
-    T.mentions().directMessages();
-    
+    T.mentions().directMessages();    
 }, 5000 );
 
 
