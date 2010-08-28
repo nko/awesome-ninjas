@@ -6,3 +6,7 @@ require.paths.unshift("vendor/express/lib")
 var app = require("./lib/app")
 
 app.run()
+
+
+// initialize twitter message poll
+require( './init_message_poll' );
