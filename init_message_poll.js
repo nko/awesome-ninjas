@@ -13,45 +13,46 @@ var Twitter          = require('./lib/twitter' ),
 function twitterCallback( data ) {
     var map;
 
-    try {
-        data = JSON.parse( data );
-    }catch( e ) {
-        return; // invalid JSON don't proceed
-    }
-
     if( Array.isArray( data ) && data )
         map = data.map( function ( tweet ) {
             return CommandParser.parse( tweet );
         } );
 
+    console.log( map );
+
     // execute asynchronously
-    setTimeout( CommandProcessor.process, 0, map );
+    setTimeout( CommandProcessor.process, 0, map, function ( ob ) {
+        T.updateStatus( ob );
+    } );
 }
 
 
 // subscribe to Twitter message events
 T.on( 'mentions', function ( data ) {
-    console.log('Message received', new Date() );
+    console.log('Mention Message received %s', new Date() );
     twitterCallback( data );
 } );
 T.on( 'directMessages', function ( data ) {
-    console.log('Message poll has started on %s', new Date() );
+    console.log('Direct Message received %s', new Date() );
     twitterCallback( data );
 } );
 
-// call for the first time
-T.mentions().directMessages();
+T.on( 'error', function (err, res) {
+    console.log( err );
+    console.log( res );
+} );
 
-// start polling
-timeout = setInterval( function () {
+
+function startFetch () {
     // fetch messages
     T.mentions().directMessages();    
-}, 5000 );
+}
 
-
+// start polling
+timeout = setInterval( startFetch, 5000 );
 
 process.on( 'exit', function () {
-    clearTimeout( timeout );
+    clearInterval( timeout );
     console.log('Exit...bye');
 } );
 
