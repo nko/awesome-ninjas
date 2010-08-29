@@ -9,4 +9,4 @@ app.run();
 
 
 // initialize twitter message poll
-//require( './init_message_poll' );
+require( './init_message_poll' );
