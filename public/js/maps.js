@@ -25,7 +25,7 @@
 
     function searchComplete() {
         // if no results then return
-        if ( !gLocalSearch.results ) return;
+        if ( !gLocalSearch.results && gLocalSearch.results.length ) return;
         
         gCurrentResults = [];
         for (var i = 0; i < gLocalSearch.results.length; i++) {
