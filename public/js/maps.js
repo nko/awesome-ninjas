@@ -134,7 +134,7 @@
         map_canvas = $( '#map-canvas' ).get(0);
         options = {
             zoom: 16,
-            center: new google.maps.LatLng(latLng[0], latLng[1]),
+            center: new google.maps.LatLng(latLng[0] || 37.423021, latLng[1] || -122.083739 ),
             mapTypeId: google.maps.MapTypeId.ROADMAP
         };
 
