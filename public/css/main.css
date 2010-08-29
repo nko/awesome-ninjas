@@ -44,13 +44,64 @@ header {
     width: 100%;
 }
 
+#map-results {
+    background-color:rgba(242, 242, 242, 0.8);
+    padding:2px 5px;
+    position:absolute;
+    right:8px;
+    top:50px;
+    width:275px;
+    z-index:1000;
+    border-radius: 8px 8px 4px 4px;
+    -moz-border-radius: 8px 8px 4px 4px;
+    -webkit-border-radius: 8px 8px 4px 4px;    
+}
+
+#search-result-cont {
+    height: 400px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-left: 5px;
+}
+
+#map-results h2 {
+    font-weight: bold;
+    padding: 4px 0;
+    font-size: 16px;
+    text-shadow: 0 2px 2px #777;         
+}
+
+#map-results .unselected {
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 3px solid #4C5E6F;
+    color: #333;
+}
+
+#map-results .unselected a {
+    text-shadow: none;
+    color: #003366;
+    font-weight: bold;
+}
+
+#map-results .unselected:hover a {
+    color: #003366;
+    font-weight: bold;
+}
+
+#map-results .unselected:last-child {
+    border-bottom: 0;
+}
+
+.ie#map-results {
+    background-color: #f5f5f5;
+}
+
 
 #vote {
     float: right;
     margin: 20px 20px 0 0;
 }
-
-
 
 footer {
     position: fixed;
@@ -71,3 +122,13 @@ footer span:last-child {
     float: right;
     margin-right: 20px;
 }
+
+
+
+
+
+
+
+
+
+
