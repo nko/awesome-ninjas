@@ -14,7 +14,7 @@ html, body {
 }
 
 a { 
-	  color: white;
+	  color: #333;
 	  text-decoration: none;
 	  text-shadow: grey 2px 2px 1px;
 }
@@ -87,7 +87,10 @@ header {
     font-weight: bold;
     padding: 4px 0;
     font-size: 16px;
-    text-shadow: 0 2px 2px #777;         
+    text-shadow: 0 2px 2px #777;
+    cursor: pointer;
+    position: relative;
+    z-index: 2;
 }
 
 #map-results .unselected {
@@ -142,8 +145,26 @@ footer span:last-child {
     margin-right: 20px;
 }
 
+/* http://www.dinnermint.org/css/creating-triangles-in-css/ */
+.css-arrow-down {
+    border-color:#333333 transparent transparent;
+    border-style:solid;
+    border-width:10px 10px 0;
+    float:right;
+    height:0;
+    margin:8px 10px 0;
+    width:0;
+}
 
-
+.css-arrow-up {
+    border-color:transparent transparent #333333;
+    border-style:solid;
+    border-width:0 10px 10px;
+    float:right;
+    height:0;
+    margin:8px 10px 0;
+    width:0;
+}
 
 
 

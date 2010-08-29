@@ -1,7 +1,8 @@
 // google maps implementation
 ( function ( $ ) {
-    var gLocalSearch, map_canvas, options, map, gCurrentResults, searchResCont;
+    var gLocalSearch, map_canvas, options, map, gCurrentResults, gInfoWindow, searchResCont;
 
+    // http://gmaps-samples-v3.googlecode.com/svn/trunk/localsearch/places.html
 
 // Create our "tiny" marker icon
     var gYellowIcon = new google.maps.MarkerImage(
@@ -40,35 +41,16 @@
         map.setCenter(new google.maps.LatLng(parseFloat(first.lat),
                                             parseFloat(first.lng)));
     }
-
-
-    // var map initialize
-    function initialize() {
-        map_canvas = $( '#map-canvas' ).get(0);
-        options = {
-            zoom: 10,
-            center: new google.maps.LatLng(-34.397, 150.644),
-            mapTypeId: google.maps.MapTypeId.ROADMAP
-        };
-
-        map = new google.maps.Map( map_canvas, options );
-
-        //initialize the search
-        // Initialize the local searcher
-        gLocalSearch = new GlocalSearch();
-        gLocalSearch.setSearchCompleteCallback(null, searchComplete );
-        gLocalSearch.setCenterPoint( map.getCenter() );
-        gLocalSearch.execute( Anj.data.search + ',' + Anj.data.address );
-
-        $( map_canvas ).append( '<div id="map-results"><h2>Search Results: </h2><div id="search-result-cont"></div></div>' );
-        searchResCont = $('#search-result-cont').get(0);
+    
+    function unselectMarkers() {
+      for (var i = 0; i < gCurrentResults.length; i++) {
+        gCurrentResults[i].unselect();
+      }
     }
-
 
 
     // A class representing a single Local Search result returned by the
     // Google AJAX Search API.
-    // http://gmaps-samples-v3.googlecode.com/svn/trunk/localsearch/places.html
     function LocalResult(result) {
       var me = this;
       me.result_ = result;
@@ -144,6 +126,42 @@
       this.node().className = "unselected" + (highlight ? " red" : "");
     }
 
+
+    // var map initialize
+    function initialize() {
+        map_canvas = $( '#map-canvas' ).get(0);
+        options = {
+            zoom: 14,
+            center: new google.maps.LatLng(-34.397, 150.644),
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+
+        map = new google.maps.Map( map_canvas, options );
+
+        // Create one InfoWindow to open when a marker is clicked.
+        gInfoWindow = new google.maps.InfoWindow;
+        google.maps.event.addListener(gInfoWindow, 'closeclick', function() {
+          unselectMarkers();
+        });
+
+
+        //initialize the search
+        // Initialize the local searcher
+        gLocalSearch = new GlocalSearch();
+        gLocalSearch.setSearchCompleteCallback(null, searchComplete );
+        gLocalSearch.setCenterPoint( map.getCenter() );
+        gLocalSearch.execute( Anj.data.search + ',' + Anj.data.address );
+
+        $( map_canvas ).append( '<div id="map-results"><span class="css-arrow-down"></span><h2>Search Results: </h2><div id="search-result-cont"></div></div>' );
+        searchResCont = $('#search-result-cont').get(0);
+
+        $("#map-results h2").click( function () {
+            $('#search-result-cont').slideToggle( 'fast', function () {
+                console.log('called')
+                $('#map-results .css-arrow-down').toggleClass( 'css-arrow-up' );    
+            });
+        })
+    }
 
 
     $( document ).ready( initialize );
