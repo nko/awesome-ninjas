@@ -109,7 +109,7 @@ html {
 /* Accessible focus treatment: people.opera.com/patrickl/experiments/keyboard/test */
 a:hover, a:active { outline: none; }
 
-a, a:active, a:visited { color: #607890; }
+a, a:active, a:visited { color: #4C5E6F; }
 a:hover { color: #036; }
 
 
@@ -211,7 +211,7 @@ button {  width: auto; overflow: visible; }
 a { 
 	  color: white;
 	  text-decoration: none;
-	  text-shadow: grey 4px 4px 1px;
+	  text-shadow: grey 2px 2px 1px;
 }
 
 #header {

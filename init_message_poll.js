@@ -53,7 +53,7 @@ timeout = setInterval( startFetch, 5000 );
 
 process.on( 'exit', function () {
     clearInterval( timeout );
-    console.log('Exit...bye');
+    console.log('Exit...by');
 } );
 
 
