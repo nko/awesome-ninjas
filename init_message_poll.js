@@ -55,7 +55,7 @@ db.get("mention_since_id", function(err, val){
     // start polling
     timeout = setInterval(function() {
         T.mentions();    
-    }, 5000 );
+    }, 12000 );
 
     db.close();
 });
