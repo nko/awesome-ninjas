@@ -129,10 +129,11 @@
 
     // var map initialize
     function initialize() {
+        var latLng = Anj.data.latLng;
         map_canvas = $( '#map-canvas' ).get(0);
         options = {
-            zoom: 14,
-            center: new google.maps.LatLng(-34.397, 150.644),
+            zoom: 16,
+            center: new google.maps.LatLng(latLng[0], latLng[1]),
             mapTypeId: google.maps.MapTypeId.ROADMAP
         };
 
