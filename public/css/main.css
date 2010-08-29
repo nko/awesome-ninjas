@@ -56,10 +56,14 @@ header {
 }
 
 .info {
-    font-size:1.4em;
+    font-size:12px;
     border: 10px solid #B2ADCF;
     line-height: 1.7em;
     padding: 1em;
+}
+
+.info p, .info ul {
+    margin-bottom: 10px;
 }
 
 

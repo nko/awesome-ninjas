@@ -1,12 +1,11 @@
 var Twitter          = require('./lib/twitter' ),
-CommandProcessor = require('./lib/command_processor'),
-CommandParser    = require('./lib/parser'),
-Redis = require('./lib/redis'),
+    CommandProcessor = require('./lib/command_processor'),
+    CommandParser    = require('./lib/parser'),
+    Redis = require('./lib/redis'),
 
-// twitter communication instance
-T                = new Twitter(),
-timeout,
-db;
+    // twitter communication instance
+    T                = new Twitter(),
+    timeout, db;
 
 
 // twitter message callback
@@ -23,8 +22,6 @@ function twitterCallback( data ) {
                 map.push( r );
         }
     }
-    console.log( map );
-
     // execute asynchronously
     setTimeout( CommandProcessor.process, 0, map, function (ob) {
         T.updateStatus(ob);
@@ -41,7 +38,6 @@ T.on( 'mentions', function ( data ) {
 
 T.on( 'updateStatus', function ( data ) {
     db = Redis.getDb();
-    console.log(data);
     db.set( 'mention_since_id', data[0].id, function() {
         db.close();
     });
