@@ -19,6 +19,11 @@ a {
 	  text-shadow: grey 2px 2px 1px;
 }
 
+strong {
+    font-size: 14px;
+    background-color: #eef;
+}
+
 #header {
     margin-top: 60px;
     margin-bottom: 20px;
