@@ -29,13 +29,19 @@ header {
 }
 
 #main {
-    padding-top: 1px;
-    padding-bottom: 150px;
+    border-top: 1px solid #7FADFF;
+    height: 90%;
 }
 
 .info {
     border: 10px solid #B2ADCF;
     padding: 1em;
+}
+
+
+#map-canvas {
+    height: 100%;
+    width: 100%;
 }
 
 
