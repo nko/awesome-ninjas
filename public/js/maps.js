@@ -2,22 +2,23 @@
 ( function ( $ ) {
     var gLocalSearch, map_canvas, options, map, gCurrentResults, gInfoWindow, searchResCont;
 
+   
     // http://gmaps-samples-v3.googlecode.com/svn/trunk/localsearch/places.html
 
 // Create our "tiny" marker icon
     var gYellowIcon = new google.maps.MarkerImage(
-      "http://labs.google.com/ridefinder/images/mm_20_yellow.png",
-      new google.maps.Size(12, 20),
+      "/img/orange-marker.png",
+      new google.maps.Size(32, 32),
       new google.maps.Point(0, 0),
       new google.maps.Point(6, 20));
     var gRedIcon = new google.maps.MarkerImage(
-      "http://labs.google.com/ridefinder/images/mm_20_red.png",
-      new google.maps.Size(12, 20),
+      "/img/red-marker.png",
+      new google.maps.Size(32, 32),
       new google.maps.Point(0, 0),
       new google.maps.Point(6, 20));
     var gSmallShadow = new google.maps.MarkerImage(
-      "http://labs.google.com/ridefinder/images/mm_20_shadow.png",
-      new google.maps.Size(22, 20),
+      "/img/marker-shadow.png",
+      new google.maps.Size(59, 32),
       new google.maps.Point(0, 0),
       new google.maps.Point(6, 20));
     
@@ -151,6 +152,7 @@
         gLocalSearch = new GlocalSearch();
         gLocalSearch.setSearchCompleteCallback(null, searchComplete );
         gLocalSearch.setCenterPoint( map.getCenter() );
+        gLocalSearch.setResultSetSize(8);
         gLocalSearch.execute( Anj.data.search + ',' + Anj.data.address );
 
         $( map_canvas ).append( '<div id="map-results"><span class="css-arrow-down"></span><h2>Search Results: </h2><div id="search-result-cont"></div></div>' );
@@ -158,7 +160,6 @@
 
         $("#map-results h2").click( function () {
             $('#search-result-cont').slideToggle( 'fast', function () {
-                console.log('called')
                 $('#map-results .css-arrow-down').toggleClass( 'css-arrow-up' );    
             });
         })
